@@ -15,20 +15,18 @@
             _lootQuality = LootQuality.Green;
         }
 
-        // Document these methods with XML documentation
+        // document xml
         public TreasureChest(State state) : this()
         {
             _state = state;
         }
-
         public TreasureChest(Material material, LockType lockType, LootQuality lootQuality)
         {
             _material = material;
             _lockType = lockType;
             _lootQuality = lootQuality;
         }
-
-        // This is called a getter
+        // this us called a getter
         public State GetState()
         {
             return _state;
@@ -36,7 +34,8 @@
 
         public State Manipulate(Action action)
         {
-            if (action == Action.Open) {
+            if (action == Action.Open)
+            {
                 Open();
             }
             return _state;
@@ -44,17 +43,38 @@
 
         public void Unlock()
         {
-            throw new NotImplementedException();
+            if (_state == State.Locked)
+            {
+                _state = State.Closed;
+            }
+            else if (_state == State.Closed)
+            {
+                Console.WriteLine("The chest is already unlocked!");
+            }
+            else if (_state == State.Open)
+            {
+                Console.WriteLine("The chest cannot be unlocked because it is already open.");
+            }
         }
 
         public void Lock()
         {
-            throw new NotImplementedException();
+            if (_state == State.Closed)
+            {
+                _state = State.Locked;
+            }
+            else if (_state == State.Locked)
+            {
+                Console.WriteLine("The chest is already locked!");
+            }
+            else if (_state == State.Open)
+            {
+                Console.WriteLine("The chest is already unlocked!");
+            }
         }
 
         public void Open()
         {
-            // We should check if the chest is closed
             if (_state == State.Closed)
             {
                 _state = State.Open;
@@ -68,10 +88,20 @@
                 Console.WriteLine("The chest cannot be opened because it is locked.");
             }
         }
-
-        public void Close()
+        private void Close()
         {
-            throw new NotImplementedException();
+            if (_state == State.Open)
+            {
+                _state = State.Closed;
+            }
+            else if (_state == State.Closed)
+            {
+                Console.WriteLine("The chest is already closed!");
+            }
+            else if (_state == State.Locked)
+            {
+                Console.WriteLine("The chest cannot be closed because it is locked.");
+            }
         }
 
         public override string ToString()
