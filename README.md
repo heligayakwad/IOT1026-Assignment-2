@@ -13,9 +13,7 @@
 
 # IOT1026-Assignment-2
 
-Write a description of the project here and don't forget to update the badges.
-
-**Bonus:** Improve the state diagram in the instructions.md file to use treasure chests and make a pull request to receive a 1% bonus. If multiple students make a pull request, the request I incorporate into the assignment will receive a 2% bonus. Ensure your pull request does not incorporate any other changes.
+The "Treasure Chest State Machine" project presents a class that effectively handles the management of a treasure chest, including its states and properties. It facilitates important actions such as opening, closing, locking, and unlocking the chest while ensuring that valid state transitions are enforced. This project offers a versatile solution for addressing treasure chest states in diverse applications.
 
 [Assignment Instructions](docs/instructions.md)  
 [How to start coding](docs/how-to-use.md)  
