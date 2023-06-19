@@ -1,3 +1,5 @@
+﻿using System;
+
 namespace Assignment
 {
     public class TreasureChest
@@ -15,18 +17,19 @@ namespace Assignment
             _lootQuality = LootQuality.Green;
         }
 
-        // document xml
+        // Parameterized Constructor
         public TreasureChest(State state) : this()
         {
             _state = state;
         }
+
         public TreasureChest(Material material, LockType lockType, LootQuality lootQuality)
         {
             _material = material;
             _lockType = lockType;
             _lootQuality = lootQuality;
         }
-        // this us called a getter
+
         public State GetState()
         {
             return _state;
@@ -34,10 +37,22 @@ namespace Assignment
 
         public State Manipulate(Action action)
         {
-            if (action == Action.Open)
+            switch (action)
             {
-                Open();
+                case Action.Open:
+                    Open();
+                    break;
+                case Action.Close:
+                    Close();
+                    break;
+                case Action.Lock:
+                    Lock();
+                    break;
+                case Action.Unlock:
+                    Unlock();
+                    break;
             }
+
             return _state;
         }
 
@@ -88,6 +103,7 @@ namespace Assignment
                 Console.WriteLine("The chest cannot be opened because it is locked.");
             }
         }
+
         private void Close()
         {
             if (_state == State.Open)
@@ -109,15 +125,9 @@ namespace Assignment
             return $"A {_state} chest with the following properties:\nMaterial: {_material}\nLock Type: {_lockType}\nLoot Quality: {_lootQuality}";
         }
 
-        private static void ConsoleHelper(string prop1, string prop2, string prop3)
-        {
-            Console.WriteLine($"Choose from the following properties.\n1.{prop1}\n2.{prop2}\n3.{prop3}");
-        }
-
         public enum State { Open, Closed, Locked };
         public enum Action { Open, Close, Lock, Unlock };
         public enum Material { Oak, RichMahogany, Iron };
         public enum LockType { Novice, Intermediate, Expert };
         public enum LootQuality { Grey, Green, Purple };
-    }
     }
